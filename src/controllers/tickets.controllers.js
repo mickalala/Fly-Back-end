@@ -1,18 +1,17 @@
-
-import { getCitiesByIdDB, getCitiesDB } from "../repositories/cities.Repository.js";
-
-export async function getCities(req, res) {
+import { getTicketsDB } from "../repositories/tickets.Repository.js";
+export async function getTickets(req, res) {
+    const {id}= req.body
     try {
-        const { rows: allCities } = await getCitiesDB()
+        const { rows: allTickets } = await getTicketsDB(id)
 
-        res.status(200).send(allCities);
+        res.status(200).send(allTickets);
 
     } catch (err) {
         res.status(500).send(err.message)
     }
 }
 
-export async function getCityById(req, res) {
+export async function getTicketsById(req, res) {
     const { id } = req.params
     try {
 
